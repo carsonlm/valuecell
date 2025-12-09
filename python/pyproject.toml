@@ -1,115 +1,243 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+# ValueCell Python 项目配置文件 (pyproject.toml)
+# 这个文件定义了项目的元数据、依赖项、构建配置和开发工具配置
 
+# ============================================================================
+# 构建系统配置 (Build System Configuration)
+# ============================================================================
+[build-system]
+# 指定构建系统所需的依赖包
+requires = ["hatchling"]  # 使用 Hatchling 作为构建后端
+build-backend = "hatchling.build"  # 指定构建后端为 Hatchling
+
+# ============================================================================
+# 项目元数据 (Project Metadata)
+# ============================================================================
 [project]
+# 项目名称，用于包管理和发布
 name = "valuecell"
+
+# 项目版本号，遵循语义化版本规范 (major.minor.patch)
 version = "0.1.17"
+
+# 项目描述，简要说明项目功能
 description = "ValueCell is a community-driven, multi-agent platform for financial applications."
+
+# 项目README文件路径
 readme = "README.md"
+
+# Python版本要求，本项目需要Python 3.12或更高版本
 requires-python = ">=3.12"
+
+# ============================================================================
+# 主要依赖项 (Main Dependencies)
+# ============================================================================
 dependencies = [
+    # ==================== 交易相关依赖 ====================
+    # python-okx: OKX交易所API客户端，用于加密货币交易
     "python-okx>=0.4.0",
+
+    # ==================== 日期时间处理 ====================
+    # pytz: 时区处理库
     "pytz>=2023.3",
+    # python-dateutil: 强大的日期时间解析和处理库
     "python-dateutil>=2.8.2",
+
+    # ==================== Web框架和API ====================
+    # fastapi: 现代、快速的Web框架，用于构建API
     "fastapi>=0.104.0",
+    # pydantic: 数据验证和设置管理，FastAPI的核心依赖
     "pydantic>=2.0.0",
+    # uvicorn: ASGI服务器，用于运行FastAPI应用
     "uvicorn>=0.24.0",
+
+    # ==================== 智能体通信协议 ====================
+    # a2a-sdk: Agent-to-Agent通信协议SDK，包含HTTP服务器功能
     "a2a-sdk[http-server]>=0.3.4",
+
+    # ==================== 金融数据获取 ====================
+    # yfinance: Yahoo Finance数据获取库，用于股票数据
     "yfinance>=0.2.65",
+    # requests: HTTP客户端库，用于API请求
     "requests>=2.32.5",
+    # akshare: 开源财经数据接口库，支持A股、港股、美股等
     "akshare>=1.17.87",
+
+    # ==================== AI智能体框架 ====================
+    # agno: AI智能体框架，支持OpenAI、Google等模型，包含向量数据库支持
     "agno[openai, google, lancedb]>=2.0,<3.0",
+
+    # ==================== SEC文件处理 ====================
+    # edgartools: SEC EDGAR数据库访问工具，用于获取上市公司文件
     "edgartools>=4.12.2",
+
+    # ==================== 数据库和存储 ====================
+    # sqlalchemy: SQL工具包和ORM（对象关系映射）
     "sqlalchemy>=2.0.43",
+    # aiosqlite: 异步SQLite数据库驱动
     "aiosqlite>=0.19.0",
+
+    # ==================== 文档处理 ====================
+    # unstructured: 非结构化文档解析库（PDF、Word、HTML等）
     "unstructured>=0.18.15",
+    # markdown: Markdown文档处理库
     "markdown>=3.9",
+
+    # ==================== 日志和文件处理 ====================
+    # loguru: 现代化的日志记录库，易于使用和配置
     "loguru>=0.7.3",
+    # aiofiles: 异步文件操作库
     "aiofiles>=24.1.0",
+
+    # ==================== 网络爬虫 ====================
+    # crawl4ai: AI友好的网络爬虫库
     "crawl4ai>=0.7.4",
+
+    # ==================== 加密货币交易 ====================
+    # ccxt: 加密货币交易库，支持100+交易所
     "ccxt>=4.5.15",
+
+    # ==================== A股数据 ====================
+    # baostock: 免费、开源的A股数据接口
     "baostock>=0.8.9",
+
+    # ==================== 超时控制 ====================
+    # func-timeout: 函数执行超时控制库
     "func-timeout>=4.3.5",
 ]
 
+# ============================================================================
+# 可选依赖项 (Optional Dependencies)
+# ============================================================================
 [project.optional-dependencies]
+# 开发环境依赖组，使用 uv sync --group dev 安装
 dev = [
-    "ruff",
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=1.0.0",
-    "diff-cover>=9.0.0",
+    "ruff",              # 代码格式化工具
+    "pytest>=7.4.0",     # 测试框架
+    "pytest-cov>=4.1.0", # 测试覆盖率工具
+    "pytest-asyncio>=1.0.0", # 异步测试支持
+    "diff-cover>=9.0.0", # 差异覆盖率报告
 ]
 
+# ============================================================================
+# 依赖分组 (Dependency Groups) - UV包管理器专用
+# ============================================================================
 [dependency-groups]
+# 开发组：包含所有开发工具
 dev = [
-    {include-group = "lint"},
-    {include-group = "style"},
-    {include-group = "test"}
+    {include-group = "lint"},  # 包含代码检查工具
+    {include-group = "style"}, # 包含代码风格工具
+    {include-group = "test"}   # 包含测试工具
 ]
+
+# 代码检查工具组
 lint = [
-    "ruff"
+    "ruff"  # 快速Python代码检查器
 ]
+
+# 代码风格工具组
 style = [
-    "ruff",
-    "isort",
+    "ruff",   # 代码格式化
+    "isort",  # import语句排序
 ]
+
+# 测试工具组
 test = [
-    "pytest>=7.4.0",
-    "pytest-cov>=4.1.0",
-    "pytest-asyncio>=1.0.0",
-    "diff-cover>=9.0.0",
+    "pytest>=7.4.0",      # 测试运行器
+    "pytest-cov>=4.1.0",  # 测试覆盖率
+    "pytest-asyncio>=1.0.0", # 异步测试
+    "diff-cover>=9.0.0",  # 差异覆盖率
 ]
 
+# ============================================================================
+# Ruff代码检查器配置 (Ruff Linter Configuration)
+# ============================================================================
 [tool.ruff]
-line-length = 88
-indent-width = 4
-target-version = "py312"
-force-exclude = true
+line-length = 88          # 最大行长度
+indent-width = 4          # 缩进宽度（空格数）
+target-version = "py312"  # 目标Python版本
+force-exclude = true      # 强制排除文件
+
+# 排除的目录和文件
 exclude = [
-    "venv",
-    "build",
-    "dist",
-    "node_modules",
-    "site-packages",
+    "venv",              # 虚拟环境
+    "build",             # 构建目录
+    "dist",              # 分发目录
+    "node_modules",      # Node.js模块（前端相关）
+    "site-packages",     # Python包安装目录
 ]
 
+# Ruff格式化配置
 [tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-skip-magic-trailing-comma = false
-line-ending = "auto"
+quote-style = "double"           # 使用双引号
+indent-style = "space"           # 使用空格缩进
+skip-magic-trailing-comma = false # 不跳过魔术尾随逗号
+line-ending = "auto"             # 自动检测行结束符
 
+# ============================================================================
+# Hatch构建配置 (Hatch Build Configuration)
+# ============================================================================
 [tool.hatch.build.targets.wheel]
+# 包含在Wheel包中的文件/目录
 include = [
-    "valuecell",
+    "valuecell",  # 主包目录
 ]
+
+# 从Wheel包中排除的文件/目录
 exclude = [
-    "tests/**",
-    "**/tests/**",
-    "examples/**",
-    "**/examples/**",
-    "docs/**",
-    "**/docs/**",
+    "tests/**",          # 测试文件
+    "**/tests/**",       # 所有测试目录
+    "examples/**",       # 示例文件
+    "**/examples/**",    # 所有示例目录
+    "docs/**",           # 文档文件
+    "**/docs/**",        # 所有文档目录
 ]
 
+# ============================================================================
+# Pytest测试配置 (Pytest Configuration)
+# ============================================================================
 [tool.pytest.ini_options]
+# 不递归搜索的目录
 norecursedirs = [
-    ".venv",
-    "venv",
-    "build",
-    "dist",
-    "logs",
-    "examples",
-    "docs",
+    ".venv",    # 虚拟环境
+    "venv",     # 虚拟环境
+    "build",    # 构建目录
+    "dist",     # 分发目录
+    "logs",     # 日志目录
+    "examples", # 示例目录
+    "docs",     # 文档目录
 ]
 
+# ============================================================================
+# isort导入排序配置 (isort Import Sorting Configuration)
+# ============================================================================
 [tool.isort]
-profile = "black"
+profile = "black"  # 使用black代码风格配置
+
+# 跳过的文件/目录模式
 skip_glob = [
-    "tests/**",
-    "**/tests/**",
-    "docs/**",
-    "**/docs/**",
+    "tests/**",      # 测试文件
+    "**/tests/**",   # 所有测试目录
+    "docs/**",       # 文档文件
+    "**/docs/**",    # 所有文档目录
 ]
+
+# ============================================================================
+# 使用说明
+# ============================================================================
+# 1. 安装项目依赖:
+#    uv sync                    # 安装生产依赖
+#    uv sync --group dev        # 安装开发依赖
+#
+# 2. 运行代码检查:
+#    ruff check .               # 代码检查
+#    ruff format .              # 代码格式化
+#
+# 3. 运行测试:
+#    uv run pytest              # 运行所有测试
+#    uv run pytest --cov        # 运行测试并计算覆盖率
+#
+# 4. 构建项目:
+#    uv build                   # 构建Wheel包
+#
+# 5. 安装开发模式:
+#    uv pip install -e .        # 可编辑模式安装

@@ -1,12 +1,27 @@
+# ValueCell 项目 .gitignore 文件
+# 这个文件定义了哪些文件和目录不应该被 Git 版本控制系统跟踪
+# 主要目的是避免将生成文件、依赖项、敏感信息和本地配置提交到代码仓库
+
+# ============================================================================
+# Python 相关文件
+# ============================================================================
+
 # Byte-compiled / optimized / DLL files
+# Python 字节码文件，由解释器自动生成，不应提交
 __pycache__/
 *.py[codz]
 *$py.class
 
 # C extensions
+# C 扩展模块，编译后生成
 *.so
 
+# ============================================================================
+# 分发和打包文件
+# ============================================================================
+
 # Distribution / packaging
+# 构建和分发过程中生成的文件
 .Python
 build/
 develop-eggs/
@@ -27,16 +42,25 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+# PyInstaller 打包工具生成的文件
 *.manifest
 *.spec
 
+# ============================================================================
+# 安装器日志
+# ============================================================================
+
 # Installer logs
+# 包管理器安装日志
 pip-log.txt
 pip-delete-this-directory.txt
 
+# ============================================================================
+# 单元测试和覆盖率报告
+# ============================================================================
+
 # Unit test / coverage reports
+# 测试相关生成文件
 htmlcov/
 .tox/
 .nox/
@@ -51,90 +75,121 @@ coverage.xml
 .pytest_cache/
 cover/
 
+# ============================================================================
+# 翻译文件
+# ============================================================================
+
 # Translations
+# 国际化翻译文件（通常由工具生成）
 *.mo
 *.pot
 
+# ============================================================================
+# 框架特定文件
+# ============================================================================
+
 # Django stuff:
+# Django 框架相关文件
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
+# Flask 框架相关文件
 instance/
 .webassets-cache
 
 # Scrapy stuff:
+# Scrapy 爬虫框架相关文件
 .scrapy
 
+# ============================================================================
+# 文档生成文件
+# ============================================================================
+
 # Sphinx documentation
+# Sphinx 文档生成文件
 docs/_build/
 
 # PyBuilder
+# PyBuilder 构建工具
 .pybuilder/
 target/
 
+# ============================================================================
+# Jupyter 和 IPython
+# ============================================================================
+
 # Jupyter Notebook
+# Jupyter Notebook 检查点
 .ipynb_checkpoints
 
 # IPython
+# IPython 配置文件
 profile_default/
 ipython_config.py
 
+# ============================================================================
+# Python 环境管理
+# ============================================================================
+
 # pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
+# pyenv 版本管理文件
 # .python-version
 
 # pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
+# Pipenv 依赖管理文件
 #Pipfile.lock
 
 # UV
-#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
+# UV 包管理器锁定文件（建议提交以确保可重现性）
 #uv.lock
 
 # poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly ignored for libraries.
-#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+# Poetry 包管理器文件
 #poetry.lock
 #poetry.toml
 
 # pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
-#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
+# PDM 包管理器文件
 #pdm.lock
 #pdm.toml
 .pdm-python
 .pdm-build/
 
 # pixi
-#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
+# Pixi 包管理器文件
 #pixi.lock
-#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
-#   in the .venv directory. It is recommended not to include this directory in version control.
 .pixi
 
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+# PEP 582
+# PEP 582 包目录
 __pypackages__/
 
+# ============================================================================
+# 任务队列
+# ============================================================================
+
 # Celery stuff
+# Celery 分布式任务队列
 celerybeat-schedule
 celerybeat.pid
 
+# ============================================================================
+# 数学计算
+# ============================================================================
+
 # SageMath parsed files
+# SageMath 数学软件
 *.sage.py
 
+# ============================================================================
+# 虚拟环境
+# ============================================================================
+
 # Environments
+# Python 虚拟环境，包含所有依赖，不应提交
 .env
 .envrc
 .venv
@@ -144,69 +199,102 @@ ENV/
 env.bak/
 venv.bak/
 
+# ============================================================================
+# IDE 和编辑器配置
+# ============================================================================
+
 # Spyder project settings
+# Spyder IDE 配置
 .spyderproject
 .spyproject
 
 # Rope project settings
+# Rope 重构工具
 .ropeproject
 
 # mkdocs documentation
+# MkDocs 文档站点
 /site
 
+# ============================================================================
+# 类型检查器
+# ============================================================================
+
 # mypy
+# MyPy 静态类型检查器缓存
 .mypy_cache/
 .dmypy.json
 dmypy.json
 
 # Pyre type checker
+# Pyre 类型检查器
 .pyre/
 
 # pytype static type analyzer
+# pytype 静态类型分析器
 .pytype/
 
+# ============================================================================
+# Cython
+# ============================================================================
+
 # Cython debug symbols
+# Cython 调试符号
 cython_debug/
 
+# ============================================================================
+# IDE 配置（特定）
+# ============================================================================
+
 # PyCharm
-#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
-#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
-#  and can be added to the global gitignore or merged into this file.  For a more nuclear
-#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+# PyCharm IDE 配置（建议使用全局 .gitignore）
 .idea/
 
 # Abstra
-# Abstra is an AI-powered process automation framework.
-# Ignore directories containing user credentials, local state, and settings.
-# Learn more at https://abstra.io/docs
+# Abstra AI 流程自动化框架
 .abstra/
 
 # Visual Studio Code
-#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
-#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
-#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
-#  you could uncomment the following to ignore the entire vscode folder
+# VS Code 编辑器配置（建议使用全局 .gitignore）
 # .vscode/
 
+# ============================================================================
+# 代码质量工具
+# ============================================================================
+
 # Ruff stuff:
+# Ruff 代码检查器缓存
 .ruff_cache/
 
+# ============================================================================
+# 包发布配置
+# ============================================================================
+
 # PyPI configuration file
+# PyPI 发布配置文件（包含敏感信息）
 .pypirc
 
+# ============================================================================
+# AI 代码编辑器
+# ============================================================================
+
 # Cursor
-#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
-#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
-#  refer to https://docs.cursor.com/context/ignore-files
+# Cursor AI 代码编辑器配置
 .cursorignore
 .cursorindexingignore
 
 # Marimo
+# Marimo 交互式笔记本
 marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+# ============================================================================
+# 数据库文件
+# ============================================================================
+
 # DB
+# 本地数据库文件，不应提交到版本控制
 *.db
 *.db-journal
 *.db-wal
@@ -216,20 +304,74 @@ __marimo__/
 lancedb
 .lancedb
 
+# ============================================================================
+# 下载文件
+# ============================================================================
+
 # Downloads
+# 下载的数据文件，通常很大且频繁变化
 *csv
 *xlsx
 *xls
 
+# ============================================================================
+# 操作系统文件
+# ============================================================================
+
 # MACOS
+# macOS 系统文件
 .DS_Store
 
+# ============================================================================
+# 本地文件和日志
+# ============================================================================
+
 # Local files
+# 本地生成的文件和日志
 logs
 .knowledge
 .txt
 
+# ============================================================================
+# 本地配置文件
+# ============================================================================
+
 # Local configs
+# 本地配置文件，可能包含敏感信息
 python/configs/
 
+# ============================================================================
+# 密钥文件
+# ============================================================================
+
+# 密钥和证书文件，绝对不应提交
 *.key
+
+# ============================================================================
+# 使用说明
+# ============================================================================
+#
+# 为什么需要 .gitignore：
+# 1. 避免提交生成文件：如编译文件、缓存文件等
+# 2. 保护敏感信息：如 API 密钥、数据库密码等
+# 3. 减少仓库大小：避免提交大文件或频繁变化的文件
+# 4. 避免冲突：避免不同开发者的本地配置冲突
+#
+# 最佳实践：
+# 1. 将环境变量放在 .env 文件中，并确保它在 .gitignore 中
+# 2. 将依赖锁定文件（如 uv.lock）提交到仓库以确保一致性
+# 3. 定期检查 .gitignore 是否需要更新
+# 4. 使用 git check-ignore 命令检查文件是否被忽略
+#
+# 常见问题：
+# 1. 如果意外提交了应该忽略的文件：
+#    git rm --cached <file>  # 从 Git 中删除但保留本地文件
+#    git commit -m "Remove ignored file"
+#
+# 2. 检查文件是否被忽略：
+#    git check-ignore -v <file>
+#
+# 3. 查看所有被忽略的文件：
+#    git status --ignored
+#
+# 注意：这个文件是基于 Python 项目的通用模板，根据 ValueCell 项目的具体需求进行了调整。
