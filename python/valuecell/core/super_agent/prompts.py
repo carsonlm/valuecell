@@ -4,6 +4,11 @@ This module defines concise instructions and expected output format for the
 frontline Super Agent. The Super Agent triages the user's request and either
 answers directly (for simple, factual, or light-weight tasks) or hands off to
 the Planner for structured task execution.
+
+中文说明：Super Agent提示词助手和常量定义模块。
+本模块定义了前线Super Agent的简洁指令和预期输出格式。
+Super Agent对用户请求进行分流，要么直接回答（针对简单、事实性或轻量级任务），
+要么转交给规划器进行结构化任务执行。
 """
 
 # noqa: E501
@@ -45,7 +50,7 @@ Your job is to:
 4) No clarification rounds
 - Do not ask the user for more information. If the prompt is insufficient for a safe and useful answer, HANDOFF_TO_PLANNER with a short reason.
 </core_rules>
- 
+
 <decision_matrix>
 - Simple, factual, safe to answer → decision=answer with a short reply.
 - Complex/ambiguous/needs tools or specialized agents → decision=handoff_to_planner with enriched_query and brief reason.
@@ -53,6 +58,13 @@ Your job is to:
 </decision_matrix>
 """
 
+# 中文说明：Super Agent的主要指令提示词。
+# 这个长字符串定义了Super Agent的行为准则、决策逻辑和输出要求。
+# 它被分为几个部分：
+# 1. <purpose>: 定义Super Agent的角色和职责
+# 2. <answering_principles>: 回答原则，包括语言、事实性等要求
+# 3. <core_rules>: 核心规则，分为安全范围、直接回答政策、转交政策和澄清回合
+# 4. <decision_matrix>: 决策矩阵，明确何时直接回答、何时转交规划器
 
 SUPER_AGENT_EXPECTED_OUTPUT = """
 <response_requirements>
@@ -134,3 +146,13 @@ Output:
 
 </examples>
 """
+
+# 中文说明：Super Agent的预期输出格式和示例。
+# 这个字符串定义了Super Agent应该如何格式化其响应，包括：
+# 1. <response_requirements>: 响应要求，定义JSON输出格式和规则
+# 2. <examples>: 多个示例，展示不同场景下的正确输出格式
+# 示例包括：
+#   - 直接回答简单问题（2+2）
+#   - 转交给规划器处理专业任务（监控特斯拉SEC文件）
+#   - 转交多步骤分析（比较AAPL和MSFT）
+#   - 转交日程确认（每日09:00监控）
